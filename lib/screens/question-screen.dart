@@ -87,11 +87,16 @@ class QuestionScreen extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text(
-                  model.queName.toString(),
-                  style: TextStyle(fontSize: 17),
+                Expanded(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      model.queName.toString(),
+                      style: TextStyle(fontSize: 17),
+                    ),
+                  ),
                 ),
-                Spacer(),
+                SizedBox(width: 20,),
                 IconButton(
                     onPressed: () {
                       showDialog(
@@ -159,7 +164,7 @@ class QuestionScreen extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.only(left: 10,right: 100,top: 10,bottom: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: model.correctAns == indexNum ? Colors.green : color,
@@ -170,6 +175,7 @@ class QuestionScreen extends StatelessWidget {
               fontSize: 17,
               color:
                   model.correctAns == indexNum ? Colors.white : Colors.black),
+
         ),
       ),
     );

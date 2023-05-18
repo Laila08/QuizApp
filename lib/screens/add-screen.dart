@@ -29,7 +29,6 @@ class _AddScreenState extends State<AddScreen> {
   @override
   Widget build(BuildContext context) {
     String? _selectedItem;
-    Color _prefixIconColor = Colors.grey;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -56,6 +55,7 @@ class _AddScreenState extends State<AddScreen> {
                 Padding(
                   padding: const EdgeInsets.all(5),
                   child: TextFormField(
+                    focusNode:Provider.of<DbProvider>(context).focusNode,
                     controller: controllerQuestion,
                     validator: (String? v) {
                       if (v!.length == 0) {
@@ -63,16 +63,11 @@ class _AddScreenState extends State<AddScreen> {
                       }
                     },
                     decoration: InputDecoration(
-                      prefixIcon: InkWell(
-                        onTap: () {
-                          setState(() {
-                            _prefixIconColor =
-                                Colors.teal; // set the new color here
-                          });
-                        },
-                        child:
-                            Icon(Icons.question_mark, color: _prefixIconColor),
+                      prefixIcon: Icon(
+                        Icons.question_mark,
+                        color:Provider.of<DbProvider>(context).isFocused?Colors.teal:Colors.grey ,
                       ),
+
                       prefixIconColor: Colors.red,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),

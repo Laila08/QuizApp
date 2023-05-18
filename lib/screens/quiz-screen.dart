@@ -68,63 +68,68 @@ class _QuizScreenState extends State<QuizScreen> {
       {required Model model, required int index, required List quesList}) {
     return Padding(
       padding: const EdgeInsets.all(15.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Question ',
-                style: TextStyle(
-                    color: Colors.teal,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 150),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Question ',
+                    style: TextStyle(
+                        color: Colors.teal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  ),
+                  Text(
+                    (index + 1).toString(),
+                    style: TextStyle(
+                        color: Colors.teal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  ),
+                  Text(
+                    '  /  ' + quesList.length.toString(),
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  ),
+                ],
               ),
-              Text(
-                (index + 1).toString(),
-                style: TextStyle(
-                    color: Colors.teal,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25),
-              ),
-              Text(
-                '  /  ' + quesList.length.toString(),
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
             ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10), color: Colors.teal),
-            child: Text(
-              model.queName.toString(),
-              style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
+            SizedBox(
+              height: 30,
             ),
-          ),
-          buildAnswerItem(
-              model: model, ansNum: 1, answer: model.ansA!, queList: quesList),
-          buildAnswerItem(
-              model: model, ansNum: 2, answer: model.ansB!, queList: quesList),
-          buildAnswerItem(
-              model: model, ansNum: 3, answer: model.ansC!, queList: quesList),
-          buildAnswerItem(
-              model: model, ansNum: 4, answer: model.ansD!, queList: quesList),
-        ],
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Colors.teal),
+              child: Text(
+                model.queName.toString(),
+                style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            buildAnswerItem(
+                model: model, ansNum: 1, answer: model.ansA!, queList: quesList),
+            buildAnswerItem(
+                model: model, ansNum: 2, answer: model.ansB!, queList: quesList),
+            buildAnswerItem(
+                model: model, ansNum: 3, answer: model.ansC!, queList: quesList),
+            buildAnswerItem(
+                model: model, ansNum: 4, answer: model.ansD!, queList: quesList),
+          ],
+        ),
       ),
     );
   }

@@ -5,6 +5,8 @@ import 'package:hw_quizapp/data/db-helper.dart';
 class DbProvider extends ChangeNotifier {
   DbProvider() {
     selectAllData();
+    focusNode = FocusNode();
+    focusNode.addListener(_changeFocus);
   }
   List<Model> modelList = [];
 
@@ -31,6 +33,13 @@ class DbProvider extends ChangeNotifier {
   deleteTask(Model model) async {
     await DbHelper.dbHelper.deleteOneQuestion(model.id ?? 0);
     selectAllData();
+    notifyListeners();
+  }
+
+  late FocusNode focusNode;
+  bool isFocused = false;
+  void _changeFocus(){
+    isFocused = focusNode.hasFocus;
     notifyListeners();
   }
 }
